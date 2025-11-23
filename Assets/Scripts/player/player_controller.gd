@@ -27,6 +27,8 @@ var attack_cooldown_duration: float = 0.3
 @onready var LeftRayCast: RayCast2D = $LeftRayCast2D
 
 func _input(event):
+	if event.is_action_pressed("exit_game"):
+		get_tree().quit()
 	# Только включаем/выключаем лучи и маску по действиям
 	if event.is_action_pressed("attack") and attack_cooldown <= 0:
 		HitboxShape.disabled = false
@@ -103,3 +105,13 @@ func _physics_process(delta):
 			set_collision_mask_value(10, false)
 
 	move_and_slide()
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	# ←←← ИСПРАВЛЕННАЯ ВЕРСИЯ — БЕЗ class_name HurtBox!
+	print("Удар!")  # для дебага
+	
+	# Универсальная проверка: ищем метод take_damage у родителя area
+	var potential_enemy = area.get_parent()
+	if potential_enemy and potential_enemy.has_method("take_damage"):
+		potential_enemy.take_damage(1)
+		print("Урон врагу нанесён!")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c03c4v2tl3txm"]
+[gd_scene load_steps=11 format=3 uid="uid://c03c4v2tl3txm"]
 
 [ext_resource type="Script" uid="uid://b7ig7gp61267f" path="res://Assets/Scripts/enemy/enemy_logic.gd" id="1_4ye20"]
 [ext_resource type="Texture2D" uid="uid://b28vfmiussnvf" path="res://Assets/Sprites/enemy_1.png" id="1_atlr2"]
@@ -18,71 +18,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Rect2(0, 0, 40, 40)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("weapon_rifle:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("weapon_rifle:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-4, -8.5)]
-}
-
-[sub_resource type="Animation" id="Animation_4ye20"]
-resource_name = "die"
-length = 1.5615
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.55, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Rect2(0, 84, 40, 40), Rect2(40, 84, 40, 40), Rect2(80, 84, 40, 40), Rect2(120, 84, 40, 40), Rect2(160, 81, 40, 40)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("weapon_rifle:rotation")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.55, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.3665191429188092, 0.4188790204786391, 0.39269908169872414, 0.17453292519943295]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("weapon_rifle:position")
-tracks/2/interp = 0
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.55, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-4, -8.5), Vector2(-2.16, -12.065), Vector2(-0.735, -11.63), Vector2(-0.635, -10.94), Vector2(-4.275, -3.025)]
 }
 
 [sub_resource type="Animation" id="Animation_e2b7p"]
@@ -117,28 +52,9 @@ tracks/0/keys = {
 "values": [Rect2(0, 40, 40, 40), Rect2(40, 40, 40, 40), Rect2(80, 40, 40, 40), Rect2(120, 40, 40, 40), Rect2(80, 40, 40, 40), Rect2(40, 40, 40, 40), Rect2(0, 40, 40, 40)]
 }
 
-[sub_resource type="Animation" id="Animation_4870b"]
-resource_name = "flash"
-length = 0.05
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Rect2(2, 123, 40, 40), Rect2(0, 0, 40, 40)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ye20"]
 _data = {
 &"RESET": SubResource("Animation_2g0jp"),
-&"die": SubResource("Animation_4ye20"),
-&"flash": SubResource("Animation_4870b"),
 &"idle": SubResource("Animation_e2b7p"),
 &"movement": SubResource("Animation_atlr2")
 }
@@ -153,9 +69,6 @@ height = 32.0
 collision_layer = 4
 collision_mask = 768
 script = ExtResource("1_4ye20")
-speed = null
-gravity = null
-max_hp = null
 
 [node name="EnemyAnimator" type="Node2D" parent="."]
 script = ExtResource("2_4870b")

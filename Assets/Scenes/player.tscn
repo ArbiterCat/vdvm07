@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddmt8c7maqsqr"]
+[gd_scene load_steps=18 format=3 uid="uid://ddmt8c7maqsqr"]
 
 [ext_resource type="Script" uid="uid://dtcurwodfggwc" path="res://Assets/Scripts/player/player_controller.gd" id="1_38rej"]
 [ext_resource type="Script" uid="uid://q2ia7sgd7jqh" path="res://Assets/Scripts/player/player_animator.gd" id="2_1cegp"]
@@ -154,6 +154,10 @@ _data = {
 &"attack": SubResource("Animation_w3t24")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_23lac"]
+radius = 12.0
+height = 34.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1xgp"]
 size = Vector2(24, 34)
 
@@ -162,6 +166,8 @@ light_mask = 2
 visibility_layer = 2
 collision_mask = 768
 script = ExtResource("1_38rej")
+speed = null
+jump_power = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -15)
@@ -189,6 +195,10 @@ region_rect = Rect2(40, 0, 40, 40)
 [node name="Sword" parent="PlayerAnimator" instance=ExtResource("4_t1xgp")]
 position = Vector2(0, -10)
 
+[node name="Hitbox" parent="PlayerAnimator/Sword" index="1"]
+collision_layer = 0
+collision_mask = 8
+
 [node name="KatanaAnimator" type="Node2D" parent="PlayerAnimator/Sword"]
 position = Vector2(-0.5, -8.5)
 
@@ -205,7 +215,17 @@ libraries = {
 &"": SubResource("AnimationLibrary_lerqx")
 }
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -17)
+shape = SubResource("CapsuleShape2D_23lac")
+debug_color = Color(0.9607843, 0, 0.07450981, 0.41960785)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_t1xgp")
 
@@ -218,3 +238,7 @@ collision_mask = 512
 position = Vector2(-12, -3)
 target_position = Vector2(0, 6)
 collision_mask = 512
+
+[connection signal="area_entered" from="PlayerAnimator/Sword/Hitbox" to="." method="_on_hitbox_area_entered"]
+
+[editable path="PlayerAnimator/Sword"]
