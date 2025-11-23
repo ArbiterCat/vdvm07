@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://gtprq82syaie"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uca3b"]
+size = Vector2(49, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bis0u"]
+size = Vector2(24, 34)
+
+[node name="DamageBox" type="Node2D"]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(24.5, -14)
+shape = SubResource("RectangleShape2D_uca3b")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_bis0u")
