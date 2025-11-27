@@ -196,10 +196,13 @@ tile_set = SubResource("TileSet_esldt")
 physics_quadrant_size = 32
 
 [node name="Player" parent="." instance=ExtResource("2_8mngg")]
-position = Vector2(0, -83)
+position = Vector2(16, -88)
 platform_floor_layers = 4278190080
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Node2D" instance=ExtResource("7_3um3i")]
 position = Vector2(136, -80)
+
+[node name="Enemy" parent="." instance=ExtResource("7_3um3i")]
+position = Vector2(272, -82)

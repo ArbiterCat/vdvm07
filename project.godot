@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="vdvm07"
-run/main_scene="uid://cq3s8rm2c8uud"
+run/main_scene="uid://c1vxwa24g718v"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://lp1p3evq1pi0"
 config/windows_native_icon="res://Assets/Sprites/VdVM07_Icon.ico"
@@ -21,7 +21,7 @@ run/layer_9="ground"
 
 [autoload]
 
-GameManager="*res://Assets/Scripts/game_manager.gd"
+GameManager="res://Assets/Scripts/game Manager/game_manager.gd"
 ExitManager="*res://Assets/Scripts/game Manager/ExitManager.gd"
 
 [display]

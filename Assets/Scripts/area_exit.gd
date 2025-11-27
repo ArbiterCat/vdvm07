@@ -15,7 +15,3 @@ func open():
 func close():
 	is_open = false
 	sprite.region_rect.position.x = 0
-
-func _on_body_entered(body):
-	if is_open && body:
-		GameManager.next_level()

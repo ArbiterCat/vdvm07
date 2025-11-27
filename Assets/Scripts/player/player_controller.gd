@@ -8,14 +8,14 @@ var speed_multiplier: float = 30.0
 var jump_multiplier: float = -30.0
 var move_direction: float = 0.0
 
-var max_jumps: int = 10
+var max_jumps: int = 1
 var jumps_made: int = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var attack_timer: float = 0.0          
 var attack_cooldown: float = 0.0       
 var attack_duration: float = 0.3       
-var attack_cooldown_duration: float = 0.3 
+var attack_cooldown_duration: float = 0.5
 
 @onready var sprite: Sprite2D = $PlayerAnimator/Sprite2D 
 @onready var sword: Node2D = $PlayerAnimator/Sword     
@@ -26,11 +26,14 @@ var attack_cooldown_duration: float = 0.3
 @onready var RightRayCast: RayCast2D = $RightRayCast2D
 @onready var LeftRayCast: RayCast2D = $LeftRayCast2D
 
+@onready var hit_sound: AudioStreamPlayer = $PlayerAnimator/Sword/KatanaAnimator/Hit
+
 func _input(event):
 	if event.is_action_pressed("exit_game"):
 		get_tree().quit()
 	# Только включаем/выключаем лучи и маску по действиям
 	if event.is_action_pressed("attack") and attack_cooldown <= 0:
+		hit_sound.play()
 		HitboxShape.disabled = false
 		attack_timer = attack_duration
 		attack_cooldown = attack_cooldown_duration

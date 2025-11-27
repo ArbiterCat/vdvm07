@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1rrpw6134ki4"]
+
+[ext_resource type="AudioStream" uid="uid://bfek1odeeiytr" path="res://Assets/Sound/credits.mp3" id="1_uxdbs"]
+[ext_resource type="Script" uid="uid://ywoov5dgdmd8" path="res://Assets/Scripts/game Manager/credits_music.gd" id="1_x2u27"]
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_x2u27")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -144.0
+offset_right = 1155.0
+offset_bottom = 765.0
+theme_override_font_sizes/font_size = 81
+text = "Старались все!
+Над игрой работали
+Вика Рубан
+Никита Спасский
+Прудников Александр
+
+Всё сделали сами
+Но Саша задолбался"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 322)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
+stream = ExtResource("1_uxdbs")

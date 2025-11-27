@@ -1,9 +1,62 @@
-[gd_scene format=3 uid="uid://dq7ml6y3toawj"]
+[gd_scene load_steps=5 format=3 uid="uid://c1vxwa24g718v"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Texture2D" uid="uid://c1e15bnfquke5" path="res://Assets/Sprites/dialogue/blue.png" id="1_55ngc"]
+[ext_resource type="Script" uid="uid://cgmioxdjla3h3" path="res://Assets/Scripts/game Manager/start_menu.gd" id="1_k5d11"]
+[ext_resource type="FontFile" uid="uid://dcart0lmt1pk4" path="res://Assets/Fonts/Terminator.ttf" id="2_k5d11"]
+[ext_resource type="Texture2D" uid="uid://bosy3gqtpl256" path="res://Assets/Sprites/start.png" id="3_mql7a"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_k5d11")
+
+[node name="quit" type="Button" parent="."]
+offset_left = 375.0
+offset_top = 537.0
+offset_right = 761.0
+offset_bottom = 601.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Blue" type="Sprite2D" parent="quit"]
+position = Vector2(194.5, 33.50003)
+scale = Vector2(1.0608519, 0.2927758)
+texture = ExtResource("1_55ngc")
+
+[node name="Label" type="Label" parent="quit"]
+layout_mode = 0
+offset_left = -94.0
+offset_top = -6.0
+offset_right = 429.0
+offset_bottom = 71.0
+theme_override_fonts/font = ExtResource("2_k5d11")
+theme_override_font_sizes/font_size = 36
+text = "ВЫЙТИ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="start" type="Button" parent="."]
+offset_left = 234.0
+offset_top = 372.0
+offset_right = 896.0
+offset_bottom = 494.0
+
+[node name="Start" type="Sprite2D" parent="start"]
+position = Vector2(332, 64.75)
+scale = Vector2(1, 1.0555556)
+texture = ExtResource("3_mql7a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 92.0
+offset_right = 1151.0
+offset_bottom = 281.0
+theme_override_fonts/font = ExtResource("2_k5d11")
+theme_override_font_sizes/font_size = 106
+text = "vdvm07"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]

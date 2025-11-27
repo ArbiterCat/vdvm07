@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://ddmt8c7maqsqr"]
+[gd_scene load_steps=19 format=3 uid="uid://ddmt8c7maqsqr"]
 
 [ext_resource type="Script" uid="uid://dtcurwodfggwc" path="res://Assets/Scripts/player/player_controller.gd" id="1_38rej"]
 [ext_resource type="Script" uid="uid://q2ia7sgd7jqh" path="res://Assets/Scripts/player/player_animator.gd" id="2_1cegp"]
 [ext_resource type="Texture2D" uid="uid://dpotj6fxauc3j" path="res://Assets/Sprites/Ninja-Sheet.png" id="3_38rej"]
 [ext_resource type="PackedScene" uid="uid://ykl2j82x7hrx" path="res://Assets/Scenes/sword.tscn" id="4_t1xgp"]
 [ext_resource type="Texture2D" uid="uid://bkvq0ivayey8d" path="res://Assets/Sprites/Slash_Anim.png" id="5_23lac"]
+[ext_resource type="AudioStream" uid="uid://c8xa245ka7p5o" path="res://Assets/Sound/hit.mp3" id="6_w3t24"]
 
 [sub_resource type="Animation" id="Animation_6f3ly"]
 length = 0.001
@@ -128,7 +129,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 0, 49, 64.85)]
+"values": [Rect2(0, 0, 49, 65)]
 }
 
 [sub_resource type="Animation" id="Animation_w3t24"]
@@ -156,22 +157,18 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_23lac"]
 radius = 12.0
-height = 34.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1xgp"]
-size = Vector2(24, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3t24"]
 
 [node name="Player" type="CharacterBody2D"]
 light_mask = 2
 visibility_layer = 2
 collision_mask = 768
 script = ExtResource("1_38rej")
-speed = null
-jump_power = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -15)
-zoom = Vector2(4, 4)
+zoom = Vector2(5.5, 5.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
@@ -203,40 +200,42 @@ collision_mask = 8
 position = Vector2(-0.5, -8.5)
 
 [node name="KatanaAnim" type="Sprite2D" parent="PlayerAnimator/Sword/KatanaAnimator"]
-visible = false
 position = Vector2(0.5, -27.5)
 texture = ExtResource("5_23lac")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 49, 64.85)
+region_rect = Rect2(0, 0, 49, 65)
 
 [node name="AnimationKatana" type="AnimationPlayer" parent="PlayerAnimator/Sword/KatanaAnimator"]
 libraries = {
 &"": SubResource("AnimationLibrary_lerqx")
 }
 
+[node name="Hit" type="AudioStreamPlayer" parent="PlayerAnimator/Sword/KatanaAnimator"]
+stream = ExtResource("6_w3t24")
+volume_db = -12.5
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -17)
+position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_23lac")
 debug_color = Color(0.9607843, 0, 0.07450981, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -17)
-shape = SubResource("RectangleShape2D_t1xgp")
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_w3t24")
 
 [node name="RightRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(12, -3)
-target_position = Vector2(0, 6)
+target_position = Vector2(0, 4)
 collision_mask = 512
 
 [node name="LeftRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-12, -3)
-target_position = Vector2(0, 6)
+target_position = Vector2(0, 4)
 collision_mask = 512
 
 [connection signal="area_entered" from="PlayerAnimator/Sword/Hitbox" to="." method="_on_hitbox_area_entered"]
